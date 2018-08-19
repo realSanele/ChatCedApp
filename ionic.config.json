@@ -1,0 +1,7 @@
+{
+  "name": "ChatCed",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
