@@ -1,14 +1,15 @@
-import { FIREBASE_CONFIG } from './../../firebase/firebase.config';
+//import { firebase } from 'firebase';
+//import { FIREBASE_CONFIG } from './../../firebase/firebase.config';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import firebase from 'firebase';
+//import firebase from 'firebase';
 /**
  * Generated class for the SignupPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var firebase;
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -19,7 +20,7 @@ export class SignupPage {
   email;
   password;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    firebase.initializeApp(FIREBASE_CONFIG);
+    //firebase.initializeApp(FIREBASE_CONFIG);
   }
 
   ionViewDidLoad() {

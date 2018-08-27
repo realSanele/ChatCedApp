@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import firebase from 'firebase';
-import { FIREBASE_CONFIG } from '../../firebase/firebase.config';
+import { AlertController } from 'ionic-angular';
+//import firebase from 'firebase';
+//import { FIREBASE_CONFIG } from '../../firebase/firebase.config';
 /**
  * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var firebase;
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -17,14 +18,11 @@ import { FIREBASE_CONFIG } from '../../firebase/firebase.config';
 export class LoginPage {
 email;
 password;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    firebase.initializeApp(FIREBASE_CONFIG);
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+    //firebase.initializeApp(FIREBASE_CONFIG);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
+  
   login(){
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) =>
     {this.navCtrl.setRoot("HomePage")
@@ -45,10 +43,11 @@ password;
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
-   this.navCtrl.setRoot("HomePage");
+
       // The signed-in user info.
       var user = result.user;
       // ...
+      this.navCtrl.setRoot("HomePage");
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -59,6 +58,56 @@ password;
       var credential = error.credential;
       // ...
     });
+  }
+
+  passwordReset(){
+    var email :string;
+    const prompt = this.alertCtrl.create({
+      title: 'Password Reset',
+      message: "Enter your Email address",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            var auth = firebase.auth();
+            //var emailAddress = "user@example.com";
+            email = data.email;
+            auth.sendPasswordResetEmail(data.email).then(function() {
+              
+            }).catch(function(error) {
+              // An error happened.
+            });
+            if(data.email.indexOf('@') > 1 && data.email.indexOf('.') > data.email.indexOf('@')){
+              this.showAlert(email);
+            }
+            
+          }
+        }
+      ]
+    });
+    prompt.present();
+  
+  }
+
+  showAlert(email:string) {
+    const alert = this.alertCtrl.create({
+      title: 'Email Sent!',
+      subTitle: 'An Email with password reset link was sent to your Email : '+email,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 

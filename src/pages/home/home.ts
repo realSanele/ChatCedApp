@@ -22,4 +22,8 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
+  addEvent(){
+    this.navCtrl.push("AddEventPage");
+  }
+
 }
