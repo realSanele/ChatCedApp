@@ -31,9 +31,19 @@
 
   <ion-list>
     <ion-item *ngFor = "let event of eventsList">
-      <img src="event?.downloadUrl" height="100" width="100">
-          {{event?.EventName}}
-      
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <img src="{{event?.downloadUrl}}" height="100" width="100">
+          </ion-col>
+          <ion-col>
+            {{event?.EventName}}
+          </ion-col>
+          <ion-col>
+            Date: {{event?.EventDate}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item> 
   </ion-list>
 

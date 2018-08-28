@@ -35,7 +35,7 @@ export class ViewEventPage {
         /*this.item._key = snap.key;
         this.item.name = snap.val().c_itemName;*/
         //Adding Item to itemsList
-        this.eventsList.push({_key : snap.key, EventName : snap.val().EventName, downloadUrl: snap.val().downloadUrl});
+        this.eventsList.push({_key : snap.key, EventCategory: snap.val().EventCategory, EventDate: snap.val().EventDate, EventName : snap.val().EventName, EventTime: snap.val().EventTime, downloadUrl: snap.val().downloadUrl});
        console.log(snap.val().downloadUrl);
         return false;
       });
