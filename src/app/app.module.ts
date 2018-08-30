@@ -1,3 +1,4 @@
+import { HomePopoverComponent } from './../components/home-popover/home-popover';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -10,11 +11,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
 //import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 import { File } from '@ionic-native/file';
+import { EventDetailsPage } from '../pages/event-details/event-details';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    ListPage
+    ListPage,
+    HomePopoverComponent,
+    EventDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,8 @@ import { File } from '@ionic-native/file';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ListPage
+    ListPage, HomePopoverComponent,
+    EventDetailsPage
   ],
   providers: [
     StatusBar,
