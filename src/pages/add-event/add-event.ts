@@ -22,6 +22,7 @@ export class AddEventPage {
   eventDate;
   eventTime;
   category;
+  eventVenue;
   selectedImage: string;
 
   fire={
@@ -142,7 +143,8 @@ export class AddEventPage {
          let  files = [];
         storageRef.getDownloadURL().then((url) => {
           this.fire.downloadUrl = url;
-          this.firebaseUploads.push({downloadUrl: url,EventName:this.eventName, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
+          
+          this.firebaseUploads.push({downloadUrl: url,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
           return this.fire.downloadUrl;
         });
         console.log(this.firebaseUploads);
