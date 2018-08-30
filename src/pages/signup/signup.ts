@@ -17,8 +17,12 @@ declare var firebase;
 })
 export class SignupPage {
 
-  email;
-  password;
+  email:string;
+  password:string;
+  surname:string;
+  resid_address:string;
+  name:string;
+  //theUser:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     //firebase.initializeApp(FIREBASE_CONFIG);
   }
@@ -28,13 +32,33 @@ export class SignupPage {
   }
 
   signup(){
-    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then( (user) =>{this.navCtrl.setRoot("HomePage")})
-    .catch(function(error) {
+    let theUser:any;
+    
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then( (user) =>
+    {
+      //console.log("User id = "+user.user.uid)
+      //var database = firebase.database()
+      firebase.database().ref('/TBL_clients/').push({c_authentication_uid:user.user.uid, c_userName:this.name, c_surname:this.surname, c_address: this.resid_address}).then((result) =>{
+        this.navCtrl.setRoot("LoginPage")
+      })
+      theUser = user.uid;
+      console.log(theUser);
+      
+      
+    }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
     });
+
+    /*if(this.theUser != null){
+      var database = firebase.database()
+      database.ref('/TBL_clients/').push({c_authentication_uid:this.theUser.uid, c_userName:this.name, c_surname:this.surname, c_address: this.resid_address}).then((result) =>{
+        this.navCtrl.setRoot("LoginPage")
+      })
+    }*/
+    
   }
 
 }
