@@ -24,7 +24,14 @@
           <ion-grid>
             <ion-row>
               <ion-col>Events</ion-col>
-              <ion-col><ion-icon name="arrow-forward" md="md-arrow-forward" (click)="addEvent()"></ion-icon></ion-col>
+              <ion-col><ion-icon name="arrow-forward" md="md-arrow-forward" (click)="showEvent()"></ion-icon></ion-col>
+            </ion-row>
+            <ion-row *ngIf = "show == 1">
+              <ion-item>
+                <ion-col (click)="addEvent()">Add Event</ion-col>
+                <ion-col (click)="viewEvent()">View Events</ion-col>
+              </ion-item>
+              
             </ion-row>
           </ion-grid>
         </ion-item>
