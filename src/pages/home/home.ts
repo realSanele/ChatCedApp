@@ -14,16 +14,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'home.html',
 })
 export class HomePage {
+  show: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.show = 0;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
 
+  showEvent(){
+    this.show = 1;
+  }
+
   addEvent(){
     this.navCtrl.push("AddEventPage");
+  }
+
+  viewEvent(){
+    this.navCtrl.push("ViewEventPage");
   }
 
 }
