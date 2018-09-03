@@ -6,55 +6,43 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>home</ion-title>
+  <ion-navbar text-center color="primary">
+    <ion-title>Home</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="HomeBody" text-center>
   <div>
-      <img src="../../assets/imgs/Painted_ChatCed_logo.png">
+      <img src="../../assets/imgs/Painted_ChatCed_logo.png" height="200">
   </div>
-  <div>
-    <ion-list>
-      
-      <ion-item>
+  <div> <br><br> 
+       
           <ion-grid>
-            <ion-row>
-              <ion-col>Events</ion-col>
-              <ion-col><ion-icon name="arrow-forward" md="md-arrow-forward" (click)="showEvent()"></ion-icon></ion-col>
+            <ion-row (click)="showEvent()" style="border-top: 1px solid white;">
+              <ion-col ><h6>Event</h6></ion-col>
+              <ion-col><h6><ion-icon *ngIf="show == 0" name="arrow-forward" md="md-arrow-forward" ></ion-icon><ion-icon *ngIf="show == 1" name="arrow-up" md="md-arrow-up" (click)="showEvent()"></ion-icon></h6></ion-col>
             </ion-row>
-            <ion-row *ngIf = "show == 1">
-              <ion-item>
-                <ion-col (click)="addEvent()">Add Event</ion-col>
-                <ion-col (click)="viewEvent()">View Events</ion-col>
-              </ion-item>
-              
+            <ion-row *ngIf = "show == 1"> 
+              <ion-col> <button color="light" ion-button (click)="addEvent()" full>Add Event</button></ion-col>
+              <ion-col> <button color="light" ion-button (click)="viewEvent()" full>View Events</button> </ion-col> 
             </ion-row>
-          </ion-grid>
-        </ion-item>
-
-    <ion-item>
+          </ion-grid>  
         <ion-grid>
-          <ion-row>
-            <ion-col>Resource</ion-col>
-            <ion-col><ion-icon name="arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+          <ion-row style="border-top: 1px solid white;">
+            <ion-col > <h6>Resource</h6> </ion-col>
+            <ion-col> <h6><ion-icon name="arrow-forward" md="md-arrow-forward"></ion-icon></h6> </ion-col>
           </ion-row>
-        </ion-grid>
-      </ion-item>
-
-    <ion-item>
+        </ion-grid> 
+ 
         <ion-grid>
-          <ion-row>
-            <ion-col>Settings</ion-col>
-            <ion-col><ion-icon name="arrow-forward" md="md-arrow-forward"></ion-icon></ion-col>
+          <ion-row style="border-top: 1px solid white;border-bottom: 1px solid white">
+            <ion-col> <h6>Settings</h6> </ion-col>
+            <ion-col> <h6><ion-icon name="arrow-forward" md="md-arrow-forward"></ion-icon></h6> </ion-col>
           </ion-row>
-        </ion-grid>
-      </ion-item>
-
-    </ion-list>
+        </ion-grid> 
+ 
   </div>
 
 

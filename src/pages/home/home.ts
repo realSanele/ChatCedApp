@@ -18,7 +18,7 @@ export class HomePage {
   show: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log("Home user ID = "+UserObj[0].authentication_UID);
+    //console.log("Home user ID = "+UserObj[0].authentication_UID);
     this.show = 0;
   }
 
@@ -27,7 +27,12 @@ export class HomePage {
   }
 
   showEvent(){
-    this.show = 1;
+    
+    if(this.show == 0){
+      this.show = 1;
+    }else if(this.show == 1){
+      this.show = 0;
+    }
   }
 
   addEvent(){

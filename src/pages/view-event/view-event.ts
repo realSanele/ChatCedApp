@@ -29,6 +29,9 @@ export class ViewEventPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewEventPage');
   }
+  addEvent(){
+    this.navCtrl.push("AddEventPage");
+  }
 
   getDataFromDB(){
     firebase.database().ref('/fireuploads/').on('value', (snapshot) =>

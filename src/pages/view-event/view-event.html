@@ -9,17 +9,17 @@
   <ion-navbar color="primary">
    
       <ion-grid>
-        <ion-row>
+        <ion-row >
           <ion-col>
             <ion-grid>
-              <ion-row>
-                <ion-col><ion-icon name="ios-add-circle-outline"></ion-icon></ion-col>
-                <ion-col>Event</ion-col>
+              <ion-row style="margin: 25px 0 0 0">
+                <ion-col><ion-icon style="font-weight: bold;font-size: 15pt" name="ios-add-circle-outline" (click)="addEvent()"></ion-icon></ion-col>
+                <ion-col> Events</ion-col>
               </ion-row>
             </ion-grid>
-          </ion-col>
-          <ion-col><h2>Events</h2></ion-col>
-          <ion-col (click)="presentPopover($event)">
+          </ion-col >
+          <ion-col style="text-align: center"><h2>Events</h2></ion-col>
+          <ion-col style="margin: 35px 0 0 0" (click)="presentPopover($event)">
               Category
       </ion-col>
         </ion-row>
@@ -30,7 +30,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="EventBody">
   
 
   <ion-list>
@@ -38,7 +38,7 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <img src="{{event?.downloadUrl}}" height="100" width="100">
+            <img src="{{event?.downloadUrl}}" height="25" width="25">
           </ion-col>
           <ion-col>
             {{event?.EventName}}
