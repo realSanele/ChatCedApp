@@ -38,7 +38,7 @@ export class SignupPage {
     {
       //console.log("User id = "+user.user.uid)
       //var database = firebase.database()
-      firebase.database().ref('/TBL_clients/').push({c_authentication_uid:user.user.uid, c_userName:this.name, c_surname:this.surname, c_address: this.resid_address}).then((result) =>{
+      firebase.database().ref('/TBL_clients/').push({c_authentication_uid:user.user.uid, c_firstName:this.name, c_surname:this.surname, c_address: this.resid_address}).then((result) =>{
         this.navCtrl.setRoot("LoginPage")
       })
       theUser = user.uid;

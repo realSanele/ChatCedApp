@@ -1,3 +1,4 @@
+import { CheckInPage } from './../pages/check-in/check-in';
 import { HomePopoverComponent } from './../components/home-popover/home-popover';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { EventDetailsPage } from '../pages/event-details/event-details';
     MyApp,
     ListPage,
     HomePopoverComponent,
+    CheckInPage,
     EventDetailsPage
   ],
   imports: [
@@ -29,6 +31,7 @@ import { EventDetailsPage } from '../pages/event-details/event-details';
   entryComponents: [
     MyApp,
     ListPage, HomePopoverComponent,
+    CheckInPage,
     EventDetailsPage
   ],
   providers: [

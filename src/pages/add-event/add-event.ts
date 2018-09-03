@@ -5,6 +5,7 @@ import { Base64 } from '@ionic-native/base64';
 import { FilePath } from '@ionic-native/file-path';
 //import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 import { File } from '@ionic-native/file';
+import { UserObj } from '../../mocks/loggedInUser.mocks';
 /**
  * Generated class for the AddEventPage page.
  *
@@ -144,7 +145,7 @@ export class AddEventPage {
         storageRef.getDownloadURL().then((url) => {
           this.fire.downloadUrl = url;
           
-          this.firebaseUploads.push({downloadUrl: url,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
+          this.firebaseUploads.push({downloadUrl: url,Admin_Authentication_UID :UserObj[0].authentication_UID,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
           return this.fire.downloadUrl;
         });
         console.log(this.firebaseUploads);

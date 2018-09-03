@@ -12,13 +12,9 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-<<<<<<< HEAD
-  rootPage: any = 'WelcomePage';
-  //rootPage: any = 'SignupPage';
-=======
   //rootPage: any = 'WelcomePage';
   rootPage: any = 'ViewEventPage';
->>>>>>> 62d9d3b732ccd5dac10182213c3c9cc3b660eeb2
+
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {

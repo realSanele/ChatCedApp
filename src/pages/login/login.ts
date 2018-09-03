@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { UserObj } from '../../mocks/loggedInUser.mocks';
 //import firebase from 'firebase';
 //import { FIREBASE_CONFIG } from '../../firebase/firebase.config';
 /**
@@ -24,8 +25,25 @@ password;
 
   
   login(){
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) =>
-    {this.navCtrl.setRoot("HomePage")
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
+      firebase.database().ref('/TBL_clients/').on('value', (snapshot) =>{
+        snapshot.forEach((snap) => 
+      { 
+        //Initializing Item;
+        /*this.item._key = snap.key;
+        this.item.name = snap.val().c_itemName;*/
+        //Adding Item to itemsList
+        if(user.user.uid == snap.val().c_authentication_uid){
+          UserObj.push({authentication_UID : snap.val().c_authentication_uid});
+          this.navCtrl.setRoot("HomePage");
+          
+        }
+        
+        return false;
+      });
+        
+      })
+    
   }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

@@ -145,20 +145,10 @@ export class ViewEventPage {
   }
   eventDetails(event:any){
 
-  console.log(event.EventCategory)
-  
-  this.navCtrl.push(EventDetailsPage,{event:event});
+    console.log(event.EventCategory)
+    
+    this.navCtrl.push(EventDetailsPage,{event:event});
   }
-  
- /* <ion-label>Event Caterory</ion-label>
-  <ion-select [(ngModel)]="category">
-    <ion-option value="sc">Seminars and Conferences</ion-option>
-    <ion-option value="ts">Trade Shows</ion-option>
-    <ion-option value="ei">Executive Retreats and Incentive Programs</ion-option>
-    <ion-option value="ae">Appreciation Events</ion-option>
-    <ion-option value="se">Sport Events</ion-option>
-    <ion-option value="pe">Product Launch Events</ion-option>
-    <ion-option value="ee">Entertainment Events</ion-option*/
 
 
 }
