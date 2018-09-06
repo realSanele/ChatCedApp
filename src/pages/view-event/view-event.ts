@@ -23,10 +23,11 @@ export class ViewEventPage {
   categoryList=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController) {
-    this.getDataFromDB();
+    
   }
 
   ionViewDidLoad() {
+    this.getDataFromDB();
     console.log('ionViewDidLoad ViewEventPage');
   }
   addEvent(){
@@ -34,7 +35,7 @@ export class ViewEventPage {
   }
 
   getDataFromDB(){
-    firebase.database().ref('/fireuploads/').on('value', (snapshot) =>
+    firebase.database().ref('/Events/').on('value', (snapshot) =>
     {
       snapshot.forEach((snap) => 
       { 
@@ -42,7 +43,7 @@ export class ViewEventPage {
         /*this.item._key = snap.key;
         this.item.name = snap.val().c_itemName;*/
         //Adding Item to itemsList
-        this.eventsList.push({_key : snap.key, EventCategory: snap.val().EventCategory, EventDate: snap.val().EventDate, EventName : snap.val().EventName, EventTime: snap.val().EventTime, downloadUrl: snap.val().downloadUrl});
+        this.eventsList.push({_key : snap.key,Event_Admin_ID:snap.val().Admin_Authentication_UID, EventCategory: snap.val().EventCategory, EventDate: snap.val().EventDate, EventName : snap.val().EventName, EventTime: snap.val().EventTime, downloadUrl: snap.val().downloadUrl});
        console.log(snap.val().downloadUrl);
        console.log(this.eventsList);
         return false;

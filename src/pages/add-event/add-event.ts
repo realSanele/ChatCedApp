@@ -29,12 +29,19 @@ export class AddEventPage {
   fire={
     downloadUrl:''
   };
-  firebaseUploads: any;
+  //firebaseUploads: any;
   imageURI: any;
+
+  //user
+  userObj;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera/*,private mediaCapture: MediaCapture, */,private base64: Base64,private platform:Platform,private filePath: FilePath,private f:File) {
     //this.firebaseUploads = firebase.database().ref('/fireuploads/');
    // this.firebaseUploads = firebase.database().ref('/fireuploads/');
+   console.log("Add Event user ID = "+UserObj[0].authentication_UID);
+   this.userObj = UserObj[0].authentication_UID;
+   
   }
 
   ionViewDidLoad() {
@@ -139,16 +146,22 @@ export class AddEventPage {
       return storageRef.put(blob).then((snapshot:any) => {
         console.log('Upload completed')
         //this.loader.dismiss;
-        this.firebaseUploads = firebase.database().ref('/fireuploads/');
+        //this.firebaseUploads = firebase.database().ref('/fireuploads/');
         console.log(snapshot.Q)
-         let  files = [];
+        console.log("snapshot = "+snapshot);
+         //let  files = [];
         storageRef.getDownloadURL().then((url) => {
           this.fire.downloadUrl = url;
-          
-          this.firebaseUploads.push({downloadUrl: url,Admin_Authentication_UID :UserObj[0].authentication_UID,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
+          console.log(url);
+          console.log("uploading ID = "+this.userObj)
+          //this.firebaseUploads.push({downloadUrl: url,Admin_Authentication_UID :this.userObj[0].authentication_UID,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
+          firebase.database().ref('/Events/').push({downloadUrl: this.fire.downloadUrl,Admin_Authentication_UID :this.userObj,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
+          this.navCtrl.push("ViewEventPage");
           return this.fire.downloadUrl;
         });
-        console.log(this.firebaseUploads);
+        console.log("Download URL = "+ this.fire.downloadUrl);
+        //this.firebaseUploads.push({downloadUrl: this.fire.downloadUrl,Admin_Authentication_UID :this.userObj[0].authentication_UID,EventName:this.eventName,eventVenue:this.eventVenue, EventDate: this.eventDate,EventTime: this.eventTime, EventCategory: this.category});
+        //console.log(this.firebaseUploads);
         // switch (type) {
         //   case 'camera':
         //   this.files.picture = storageRef.getDownloadURL().toString();
